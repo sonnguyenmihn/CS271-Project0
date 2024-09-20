@@ -1,9 +1,7 @@
-mytests: list mytests.o
-	g++ -o mytests mytests.o doublylinkedlist
-	./mytests
-
-list: DoublyLinkedList.cpp DoublyLinkedList.hpp
-	g++ DoublyLinkedList.cpp -c -o doublylinkedlist 
-
-mytests.o: mytests.cpp
-	g++ -o mytests.o mytests.cpp -c
+driver: mytests.o
+	g++ -o driver mytests.o
+	./driver
+	
+mytests.o: mytests.cpp DoublyLinkedList.hpp DoublyLinkedList.cpp
+	g++ -c mytests.cpp
+	

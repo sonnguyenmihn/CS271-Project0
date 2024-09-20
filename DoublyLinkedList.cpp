@@ -389,42 +389,6 @@ DoublyLinkedList<T> DoublyLinkedList<T>::concat(const DoublyLinkedList<T> &list)
 }
 
 
-//====================================================
-// Friend 
-// This function overloads the << operator to print
-// the contents of a DoublyLinkedList object
-// Parameters:
-// os: an ostream object (such as cout) to which the 
-//     list will be printed
-// list: a reference to the DoublyLinkedList object 
-//       that we want to print
-// Return Value:
-// returns the ostream object (os) with the contents of
-// the list printed, where each element is separated by
-// a single space. No trailing space is printed after the
-// last element.
-//====================================================
-template <class T>
-ostream &operator<<(ostream &os, const DoublyLinkedList<T> &list)
-{
-    typename DoublyLinkedList<T>::Node *current = list.head; // start from head of the list
-
-    // go through list and print each item
-    while (current != NULL)
-    {
-        os << current->val; // print the value of the current node
-
-        if (current->next != NULL)
-        {
-            os << ' '; // print a space if there is another item following
-        }
-
-        current = current->next; // move to the new node
-    }
-
-    return os;
-}
-
 
 
             

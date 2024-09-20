@@ -50,43 +50,4 @@ int main()
     {
         cout << "Exception caught: " << e.what() << endl;
     }
-
-    //create a list to test the copy constructor
-    DoublyLinkedList<int> list1;
-    list1.append(10);
-    list1.append(20);
-    list1.append(30);
-
-    // Use copy constructor to create list2
-    DoublyLinkedList<int> list2 = list1;
-
-    // Print both lists to check if they are the same
-    cout << "Test Copy Constructor:" << endl;
-    cout << "List 1: ";
-    for (int i = 0; i < list1.length(); i++) {
-        cout << list1[i] << " ";
-    }
-    cout << endl;
-
-    cout << "List 2 (Copied): ";
-    for (int i = 0; i < list2.length(); i++) {
-        cout << list2[i] << " ";
-    }
-    cout << endl;
-
-    // Modify list2 and check that list1 remains unchanged
-    list2.append(40);
-    cout << "List 2 (After append 40): ";
-    for (int i = 0; i < list2.length(); i++) {
-        cout << list2[i] << " ";
-    }
-    cout << endl;
-
-    cout << "List 1 (After modifying List 2): ";
-    for (int i = 0; i < list1.length(); i++) {
-        cout << list1[i] << " ";
-    }
-    cout << endl;
-    
-    return 0;
 }
