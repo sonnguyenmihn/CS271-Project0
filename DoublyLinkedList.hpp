@@ -43,4 +43,7 @@ public:
     friend ostream & operator<< ( ostream &os, DoublyLinkedList<T> &list );
 };
 
+// #include "DoublyLinkedList.cpp"
+
+
 #endif

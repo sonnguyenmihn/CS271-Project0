@@ -38,6 +38,24 @@ DoublyLinkedList<T>::DoublyLinkedList(void)
 //====================================================
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList<T> &aList) {
+
+    //clear all nodes in the current doubly linked list
+    Node *ptr = head;
+	while (ptr != NULL) {
+		head = ptr->next;
+		delete ptr;
+		ptr = head;
+	}
+	head = NULL;
+    tail = NULL;
+    size = 0;
+
+    //prepend value of each node of the reference list aList to tis doubly linked list
+    Node *node = aList.head;
+    while (node != NULL) {
+        append(node->val);
+        node = node->next;
+    }
 }
 
 
@@ -117,6 +135,22 @@ void DoublyLinkedList<T>::prepend(const T &item)
 //====================================================
 template<class T>
 void DoublyLinkedList<T>::append ( const T &item ) {
+    // create a new Node
+    Node *newNode = new Node;
+    newNode->next = NULL;
+    newNode->prev = tail;
+    newNode->val = item;
+
+    // if the list is empty, head will be pointing to the new Node
+    if (size == 0) {
+        head = newNode;
+    } 
+    // if the list isnt empty, the last Node in the list will be poiting to the new Node
+    else {
+        tail->next = newNode;
+    }
+    tail = newNode;
+    size++;
 }
 
 
@@ -243,6 +277,8 @@ void DoublyLinkedList<T>::remove(int index)
 
     --size; // decrement from the length of list
 }
+
+
 //====================================================
 // search
 // This function looks for an item in the list and return
@@ -254,7 +290,14 @@ void DoublyLinkedList<T>::remove(int index)
 //====================================================
 template <class T>
 int DoublyLinkedList<T>::search ( const T &item ) const {
-    return 0
+    Node *current = head;
+    for (int i = 0; i < size; i++) {
+        if (current->val == item) {
+            return i;
+        }
+        current = current->next;
+    }
+    return -1;
 }
 
 
@@ -310,6 +353,7 @@ bool DoublyLinkedList<T>::empty ( void ) const {
     return size == 0;
 }
 
+
 //=======================================================
 // concat
 // This function concatenates two doubly linked lists and
@@ -343,6 +387,8 @@ DoublyLinkedList<T> DoublyLinkedList<T>::concat(const DoublyLinkedList<T> &list)
     }
     return newList;
 }
+
+
 //====================================================
 // Friend 
 // This function overloads the << operator to print
@@ -379,7 +425,6 @@ ostream &operator<<(ostream &os, const DoublyLinkedList<T> &list)
     return os;
 }
 
-            
 
 
             

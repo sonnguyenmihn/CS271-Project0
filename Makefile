@@ -1,17 +1,9 @@
-CXX = g++
-
-mytests: DLL.o mytests.o
-	$(CXX) DLL.o mytests.o -o mytests
+mytests: list mytests.o
+	g++ -o mytests mytests.o doublylinkedlist
 	./mytests
 
-list: DLL.o
-	$(CXX) DLL.o -o doublylinkedlist
-
-DLL.o:DoublyLinkedList.hpp DoublyLinkedList.cpp 
-	$(CXX) -c DoublyLinkedList.cpp -o DLL.o
+list: DoublyLinkedList.cpp DoublyLinkedList.hpp
+	g++ DoublyLinkedList.cpp -c -o doublylinkedlist 
 
 mytests.o: mytests.cpp
-	$(CXX) -c mytests.cpp -o mytests.o
-
-clean: 
-	rm -f *.o mytests doublylinkedlist
+	g++ -o mytests.o mytests.cpp -c
