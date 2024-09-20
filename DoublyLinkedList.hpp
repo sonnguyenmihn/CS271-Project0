@@ -1,9 +1,11 @@
 //=========================================================
-// comments
+// DoublyLinkedList.hh
+// Trinity Meckel, Son Nguyen, Thomas
+// September 20, 2024
+// This is the header file for the DoublyLinkedList class
 //=========================================================
 
 #include <iostream>
-#include <string>
 
 using namespace std;
 

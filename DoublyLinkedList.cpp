@@ -1,8 +1,8 @@
 //====================================================
 // DoublyLinkedList.cpp
-// Trinity Meckel,  , 
+// Trinity Meckel, Son Nguyen, Thomas
 // September 20, 2024
-// Explain what this .cpp file does / program
+// This is the implementation file for the DoublyLinkedList class
 //====================================================
 
 
@@ -26,6 +26,21 @@ DoublyLinkedList<T>::DoublyLinkedList(void)
     tail = NULL;
     size = 0;
 }
+
+
+//====================================================
+// copy constructor
+// create a deep copy of a DoublyLinkedList instance
+// Parameters:
+// aList: an instance of DoublyLinkedList class
+// Return Value:
+// None. Initializes head & tail to NULL, length to 0
+//====================================================
+template <class T>
+DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList<T> &aList) {
+}
+
+
 //=====================================================
 // destructor
 // removes an instance of the DoublyLinkedList class
@@ -53,6 +68,8 @@ DoublyLinkedList<T>::~DoublyLinkedList(void)
         tail = qtr;
     }
 }
+
+
 //====================================================
 // Prepend
 // This function adds a new element to the front of the 
@@ -86,6 +103,23 @@ void DoublyLinkedList<T>::prepend(const T &item)
     head = newNode; // new node becomes head of list
     size++; 
 }
+
+
+//====================================================
+// Append
+// This function adds a new element to the end of the list
+// Parameters:
+// item: the element to be added 
+// Return Value:
+// None. Element is inserted to become new tail of list.
+// If list is empty, both head and tail are updated to
+// point to the new node. 
+//====================================================
+template<class T>
+void DoublyLinkedList<T>::append ( const T &item ) {
+}
+
+
 //================================================================
 // insert
 // This function inserts a new element into the list at
@@ -133,6 +167,8 @@ void DoublyLinkedList<T>::insert(const T &item, int index)
     // adjust length to accomodate the new element
     size++;
 }
+
+
 //====================================================
 // Remove
 // This function removes an item at a specfic position
@@ -207,6 +243,20 @@ void DoublyLinkedList<T>::remove(int index)
 
     --size; // decrement from the length of list
 }
+//====================================================
+// search
+// This function looks for an item in the list and return
+// its index in the list
+// Parameters:
+// item: the item to be searched for
+// Return Value:
+// index: the position of that item in the list
+//====================================================
+template <class T>
+int DoublyLinkedlist<T>::search ( const T &item ) const {
+    return 0
+}
+
 
 //====================================================
 // accessing operator []
@@ -230,6 +280,7 @@ T & DoublyLinkedList<T>::operator[] (int index)
     return ptr->val;
 }
 
+
 //====================================================
 // Length
 // This function returns the number of elements in the list
@@ -243,6 +294,19 @@ template <class T>
 int DoublyLinkedList<T>::length(void) const
 {
     return size;
+}
+
+
+//====================================================
+// empty
+// This function returns true if the list is empty, false otherwise
+// Parameters:
+// none
+// Return Value:
+// returns true if the list is empty, false otherwise
+//====================================================
+bool DoublyLinkedList<T>::empty ( void ) const {
+    return size == 0;
 }
 
 //=======================================================
