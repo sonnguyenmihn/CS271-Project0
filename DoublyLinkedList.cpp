@@ -253,7 +253,7 @@ void DoublyLinkedList<T>::remove(int index)
 // index: the position of that item in the list
 //====================================================
 template <class T>
-int DoublyLinkedlist<T>::search ( const T &item ) const {
+int DoublyLinkedList<T>::search ( const T &item ) const {
     return 0
 }
 
@@ -305,6 +305,7 @@ int DoublyLinkedList<T>::length(void) const
 // Return Value:
 // returns true if the list is empty, false otherwise
 //====================================================
+template <class T>
 bool DoublyLinkedList<T>::empty ( void ) const {
     return size == 0;
 }
