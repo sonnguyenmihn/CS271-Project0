@@ -23,7 +23,7 @@ private:
 
     Node *head;
     Node *tail;
-    int length;
+    int size;
 
 public:
     DoublyLinkedList ( void );

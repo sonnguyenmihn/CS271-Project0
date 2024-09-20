@@ -24,7 +24,7 @@ DoublyLinkedList<T>::DoublyLinkedList(void)
 {
     head = NULL;
     tail = NULL;
-    length = 0;
+    size = 0;
 }
 //=====================================================
 // destructor
@@ -78,13 +78,13 @@ void DoublyLinkedList<T>::prepend(const T &item)
     {
         tail = newNode; // if list is empty, both tail & head should point to new node
     }
-    else:
+    else
     {
         head->prev = newNode; // update prev head to new node
     }
 
     head = newNode; // new node becomes head of list
-    length++; 
+    size++; 
 }
 //================================================================
 // insert
@@ -100,13 +100,13 @@ template <class T>
 void DoublyLinkedList<T>::insert(const T &item, int index)
 {
     //Throw an out_of_range error if the index does not exist within the list
-    if (index < 0 || index > length)
+    if (index < 0 || index > size)
         throw out_of_range("That is outside of the list range.");
     
     if (index == 0)
-        this.prepend(item); //if index is 0 put the item at the start of list
-    else if (index == length)
-        this.append(item); // if index is length of the list append item at the end
+        this->prepend(item); //if index is 0 put the item at the start of list
+    else if (index == size)
+        this->append(item); // if index is length of the list append item at the end
 
     else
     {
@@ -119,7 +119,7 @@ void DoublyLinkedList<T>::insert(const T &item, int index)
         for (int i = 0; i < index - 1; i++) 
             qtr = qtr->next;
         //Loop to move backwards through the list, starting from tail to reach the selected index
-        for (int i = 0; i < length - index - 1; i++)
+        for (int i = 0; i < size - index - 1; i++)
             ttr = ttr->prev;
         //ptr is placed after between the nodes pointed at by qtr and ttr
         //all items following ptr, including ttr, get pushed down, 
@@ -131,7 +131,7 @@ void DoublyLinkedList<T>::insert(const T &item, int index)
 
     }
     // adjust length to accomodate the new element
-    length++
+    size++;
 }
 //====================================================
 // Remove
@@ -148,7 +148,7 @@ template <class T>
 void DoublyLinkedList<T>::remove(int index)
 {
     // check if the index is out of range
-    if (index < 0 || index >= length)
+    if (index < 0 || index >= size)
     {
         throw out_of_range( "Index is out of range");
     }
@@ -172,7 +172,7 @@ void DoublyLinkedList<T>::remove(int index)
     }
 
     // special case: removing the tail
-    else if (index == length - 1)
+    else if (index == size - 1)
     {    
         Node *nodeToRemove = tail;
         tail = tail->prev;
@@ -191,7 +191,7 @@ void DoublyLinkedList<T>::remove(int index)
     else
     {
         Node *current = head;
-        for (int i = 0 ; i < index : i++)
+        for (int i = 0 ; i < index ; i++)
         {
             current = current->next;
         }
@@ -205,7 +205,7 @@ void DoublyLinkedList<T>::remove(int index)
         delete current;
     }
 
-    --length; // decrement from the length of list
+    --size; // decrement from the length of list
 }
 
 //====================================================
@@ -222,7 +222,7 @@ template <class T>
 T & DoublyLinkedList<T>::operator[] (int index)
 {
     //Throw an out_of_range error if the index does not exist within the list
-    if (index < 0 || index > length - 1)
+    if (index < 0 || index > size - 1)
         throw out_of_range("That is outside of the list range.");
     Node *ptr = head;
     for (int i = 0; i < index; i++) //loop to iterate through the list
@@ -242,7 +242,7 @@ T & DoublyLinkedList<T>::operator[] (int index)
 template <class T>
 int DoublyLinkedList<T>::length(void) const
 {
-    return length;
+    return size;
 }
 
 //=======================================================
@@ -318,16 +318,6 @@ ostream &operator<<(ostream &os, const DoublyLinkedList<T> &list)
 
 
             
-
-
-
-
-
-
-
-
-
-
 
 
 
