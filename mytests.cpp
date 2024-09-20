@@ -19,6 +19,26 @@ void testPrepend(DoublyLinkedList<int>& list)
     cout << "List length after prepends: " << list.length() << endl;
 }
 
+//Test insert function
+void testInsert(DoublyLinkedList<int> &list)
+{   
+    cout << "List before inserts: " << list << endl;
+    list.insert(5, 0); //use values to insert new elements into the list
+    list.insert(4, 2);
+    list.insert(8, list.length - 1);
+    cout << "List after inserts: " << list << endl; //print new list to make sure inserts werer made correctly
+    cout << "List length after inserts: " << list.length() << endl; //check that size was updated correctly
+}
+
+//Test accessing operator function
+void testAccess(DoublyLinkedList<int> &list)
+{
+    cout << "Value at index 3: " << list[3] << endl; //check values
+    cout << "First value in list: " << list[0];
+    cout << "Last value in list: " << list[list.length() - 1];
+    cout << "Stored values in list: " << list << endl; //check actual list to make sure outputs match
+}
+
 // function to test the << operator
 void testPrintList(const DoublyLinkedList<int>& list) 
 {
@@ -53,6 +73,18 @@ void testRemove(DoublyLinkedList<int>& list)
     }
 }
 
+//Test the concatenation function
+void testConcat(DoublyLinkedList<int> &list)
+{
+    DoublyLinkedList<int> list2, list3; //make new lists
+    list2.append(40); //populate list2
+    list2.append(50);
+    list2.append(60);
+    cout << "List before concat: " << list << endl; //check both lists
+    cout << "Values in ist2: " << list2 << endl;
+    list3 = list.concat(list2); //concatenate list and list2
+    cout << "List3 created after concatenation: " << list << endl; //verify that list3 is the concatenation of list and list2
+}
 
 int main() 
 {
