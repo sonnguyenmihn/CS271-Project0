@@ -70,21 +70,16 @@ DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList<T> &aList) {
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList(void)
 {
-    //create pointers to track the head and tail
+{
     Node *ptr = head;
-    Node *qtr = tail;
-    while (ptr !=NULL && qtr != NULL) //loop until ptr and qtr no longer point to anything
-    {
-        //move ptr forward and qtr back
-        ptr = head->next;
-        qtr = tail->prev;
-        //delete the elements at head and tail, which ptr and qtr where just pointing to
-        delete head;
-        delete tail;
-        //set the nodes pointed at by ptr and qtr as the new head and tail respectively
-        head = ptr;
-        tail = qtr;
+    while (ptr != NULL) {
+        Node *next = ptr->next; // Store the next node before deletion
+        delete ptr;
+        ptr = next;
     }
+    head = tail = NULL;
+    size = 0;
+}
 }
 
 
@@ -196,10 +191,9 @@ void DoublyLinkedList<T>::insert(const T &item, int index)
         ptr->next = ttr;
         //store the new item as the value in the newly placed node
         ptr->val = item;
-
+        // adjust length to accomodate the new element
+        size++;
     }
-    // adjust length to accomodate the new element
-    size++;
 }
 
 
