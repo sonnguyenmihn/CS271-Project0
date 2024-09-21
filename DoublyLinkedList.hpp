@@ -40,6 +40,8 @@ public:
     int length ( void ) const;
     bool empty ( void ) const;
     DoublyLinkedList<T> concat ( const DoublyLinkedList<T> &list ) const;
+    DoublyLinkedList<T> & operator= ( const DoublyLinkedList<T> &aList );
+ 
     //====================================================
     // Friend 
     // This function overloads the << operator to print

@@ -8,3 +8,5 @@ mytests: list mytests.o
 mytests.o: mytests.cpp
 	g++ -o mytests.o mytests.cpp -c
 
+clean:
+	rm mytests.o doublylinkedlist 

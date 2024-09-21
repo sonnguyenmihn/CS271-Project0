@@ -38,14 +38,6 @@ DoublyLinkedList<T>::DoublyLinkedList(void)
 //====================================================
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList<T> &aList) {
-
-    //clear all nodes in the current doubly linked list
-    Node *ptr = head;
-	while (ptr != NULL) {
-		head = ptr->next;
-		delete ptr;
-		ptr = head;
-	}
 	head = NULL;
     tail = NULL;
     size = 0;
@@ -382,3 +374,34 @@ DoublyLinkedList<T> DoublyLinkedList<T>::concat(const DoublyLinkedList<T> &list)
     return newList;
 }
 
+
+//=======================================================
+// Assignment operator =
+// This function assigns one DoublyLinkedList object to another
+// by clearing all nodes in the current list and performing
+// a deep copy of the nodes from the given list.
+// Parameters:
+// alist: the list being copied and assigned to the current object
+// Return Value:
+// *this: returns the current object after assignment, with all
+// elements from the given list copied into it. 
+//=======================================================
+template <typename T>
+DoublyLinkedList<T> & DoublyLinkedList<T>::operator=(const DoublyLinkedList<T> &aList) {
+    // Check if the object is assigned to itself
+    if (this == aList) {
+        return *this;
+    }
+
+    // clear all nodes
+    this->~DoublyLinkedList();
+
+    // Initialize a deep copy of the given list
+    Node* current = aList.head;
+    while (current != nullptr) {
+        this->append(current->item);
+        current = current->next;
+    }
+
+    return *this;
+}
