@@ -167,23 +167,18 @@ void DoublyLinkedList<T>::insert(const T &item, int index)
     {
         //create a new node to be placed where an element is being inserted
         Node *ptr = new Node;
-        //create node pointers to track the head and tail of the list
-        Node *qtr = head;
-        Node *ttr = tail;
-        //loop up until one index before the chosen index
-        for (int i = 0; i < index - 1; i++) 
-            qtr = qtr->next;
-        //Loop to move backwards through the list, starting from tail to reach the selected index
-        for (int i = 0; i < size - index - 1; i++)
-            ttr = ttr->prev;
-        //ptr is placed after between the nodes pointed at by qtr and ttr
-        //all items following ptr, including ttr, get pushed down, 
-        //the new element is where ttr used to point folloing the loops
-        ptr->prev = qtr;
-        ptr->next = ttr;
         //store the new item as the value in the newly placed node
         ptr->val = item;
-        // adjust length to accomodate the new element
+        //traverse to the node just before the insertion point
+        Node *qtr = head;
+        for (int i = 0; i < index - 1; i++) 
+            qtr = qtr->next;
+        //insert the new node between qtr and the next node
+        ptr->next = qtr->next;
+        ptr->prev = qtr;
+        qtr->next->prev = ptr;
+        qtr->next = ptr;
+        // Adjust the size of the list
         size++;
     }
 }
@@ -389,7 +384,7 @@ DoublyLinkedList<T> DoublyLinkedList<T>::concat(const DoublyLinkedList<T> &list)
 template <typename T>
 DoublyLinkedList<T> & DoublyLinkedList<T>::operator=(const DoublyLinkedList<T> &aList) {
     // Check if the object is assigned to itself
-    if (this == aList) {
+    if (this == &aList) {
         return *this;
     }
 
@@ -399,9 +394,8 @@ DoublyLinkedList<T> & DoublyLinkedList<T>::operator=(const DoublyLinkedList<T> &
     // Initialize a deep copy of the given list
     Node* current = aList.head;
     while (current != nullptr) {
-        this->append(current->item);
+        this->append(current->val);
         current = current->next;
     }
-
     return *this;
 }
