@@ -1,12 +1,12 @@
-list: DoublyLinkedList.cpp DoublyLinkedList.hpp
-	g++ DoublyLinkedList.cpp -c -o doublylinkedlist 
-
-mytests: list mytests.o
-	g++ -o mytests mytests.o doublylinkedlist
+mytests: mytests.o
+	g++ -o mytests mytests.o
 	./mytests
 
-mytests.o: mytests.cpp
+mytests.o: list mytests.cpp
 	g++ -o mytests.o mytests.cpp -c
+
+list: DoublyLinkedList.cpp DoublyLinkedList.hpp
+	g++ DoublyLinkedList.cpp -c -o doublylinkedlist 
 
 clean:
 	rm mytests.o doublylinkedlist mytests
